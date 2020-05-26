@@ -15,21 +15,27 @@ function Menu({navigation}){
         <View style={style.menu}>
             <Header></Header>
             <View style={style.buttons}>
+                <View style={style.button}>
         <Button
             onPress={onPressStart}
             title="Start"
             color="#80F8E2"
         />
+                </View>
+                <View style={style.button}>
         <Button
             onPress={onPressFullStory}
-            title="FullStory"
+            title="Full Story"
             color="#BD73C9"
         />
+                </View>
+                <View style={style.button}>
         <Button
             onPress={onPressInstructions}
             title="Instructions"
             color="#F1D024"
         />
+                </View>
             </View>
     </View>)
 }
@@ -40,9 +46,12 @@ const style=StyleSheet.create({
         alignItems: 'center',
     },
     buttons:{
-        flex:3,
+        flex:1,
         justifyContent: 'space-between',
-        padding:20
+        bottom:35
+    },
+    button:{
+        width:160
     }
 })
 export default Menu

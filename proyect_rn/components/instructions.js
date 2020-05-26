@@ -17,16 +17,20 @@ return(
         </Text>
         </View>
         <View style={style.buttons}>
+            <View style={style.button}>
         <Button
             onPress={onPressStart}
             title="Start"
             color="#80F8E2"
         />
+            </View>
+            <View style={style.button}>
         <Button
             onPress={onPressFullStory}
-            title="FullStory"
+            title="Full Story"
             color="#BD73C9"
         />
+            </View>
         </View>
     </View>
 )
@@ -42,12 +46,15 @@ const style=StyleSheet.create({
         justifyContent: 'space-around',
         flexDirection: 'row',
         position: 'absolute',
-        bottom: 35,
-        width:'80%',
+        bottom: 50,
+        width:'80%'
     },
     text:{
         padding:20,
         flex:2,
+    },
+    button:{
+        width:120
     }
 })
 export default Instructions
