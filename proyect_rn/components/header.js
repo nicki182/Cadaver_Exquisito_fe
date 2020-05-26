@@ -13,7 +13,7 @@ function Header() {
     } else {
         return (
             <View style={styles.header}>
-                <Configuration></Configuration>
+               // <Configuration></Configuration> todavia en proceso de desarrollo todavia no pude agrega la musica que tenia pensado
             <View style={styles.text}>
                 <Text style={styles.fontText}>
                     Cadaver Exquisito
