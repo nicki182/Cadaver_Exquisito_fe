@@ -46,7 +46,7 @@ function  Settings() {
          return (
                  <View style={style.settings}>
                  <Feather name="settings" size={24} color="grey" onPress={OnPress} />
-                 <Modal visible={show}>
+                 <Modal visible={show}>//necesito cambiar el diseño del modal
                      <View style={style.settingMenu}>
                          <View style={style.button}>
                              <Button title={"Mute"} onPress={muteMusic}/>
