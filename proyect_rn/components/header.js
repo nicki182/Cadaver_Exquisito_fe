@@ -13,7 +13,9 @@ function Header() {
     } else {
         return (
             <View style={styles.header}>
-               // <Configuration></Configuration> todavia en proceso de desarrollo todavia no pude agrega la musica que tenia pensado
+               // <Configuration></Configuration> 
+            //todavia en proceso de desarrollo todavia no pude agrega la musica que tenia pensado en assets ya que es un archivo demasiado grande para agregar en git
+            //voy a cambiar el archivo mp3 y subirlo, tambien tengo problemas para ubicarlo donde quiero configuration que es en la esquina derecha este componente es un boton con un modal pop up
             <View style={styles.text}>
                 <Text style={styles.fontText}>
                     Cadaver Exquisito
