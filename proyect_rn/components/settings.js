@@ -6,15 +6,13 @@ import { Feather } from '@expo/vector-icons';
 function  Settings() {
     const isFirstRun = useRef(true);
     const [show,setShow]=useState(false)
-     const [mute,setMute]=useState(false)
     const [sound,setSound]=useState(undefined)
      useEffect(() => {
          async function playMusic() {
                  if(isFirstRun.current) {
                      const soundObject=new Audio.Sound()
                      try {
-                         await soundObject.loadAsync(require('../assets/sounds/Men_I_Trust-Oncle_Jazz(Full_Album_HQ)(128_kbps).mp3'));
-                         console.log(await soundObject.getStatusAsync())
+                         await soundObject.loadAsync(require('../assets/sounds/BADBADNOTGOOD-TimeMovesSlow(Feat.SamuelT.Herring)(OfficialStream).mp3'));
                          await soundObject.playAsync();
                          // Your sound is playing!
                      } catch (error) {
