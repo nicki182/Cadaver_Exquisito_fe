@@ -26,11 +26,11 @@ const styles=StyleSheet.create({
         backgroundColor: '#EB8888',
         flex:1,
         alignItems:'center',
-        justifyContent:'space-around'
+        justifyContent:'space-between'
     },
     text:{
         width:'100%',
-        height:50,
+        height:60,
         alignSelf:'center',
         justifyContent:'center',
         flex:1

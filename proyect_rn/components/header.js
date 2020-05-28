@@ -7,8 +7,12 @@ import Title from "./title";
 function Header() {
         return (
             <View style={styles.header}>
+                <View style={{flex:1,alignSelf:"flex-end"}}>
                 <Settings></Settings>
+                </View>
+                <View style={{flex:2}}>
             <Title></Title>
+                </View>
             </View>
         )
 }
