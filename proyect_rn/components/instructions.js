@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {Button, View, Touchable, Text, ScrollView, StyleSheet} from 'react-native';
 import Header from "./header";
+import sizes from "./constants/buttons";
+import {pastel} from "./constants/colors";
 function Instructions({navigation}) {
     const onPressStart=(e)=>{
         navigation.navigate('StoryCreate')
@@ -10,7 +12,6 @@ function Instructions({navigation}) {
     }
 return(
     <View style={style.instructions}>
-        <Header></Header>
         <View style={style.text}>
         <Text>
             Write Instructions
@@ -21,14 +22,14 @@ return(
         <Button
             onPress={onPressStart}
             title="Start"
-            color="#80F8E2"
+            color={pastel.start}
         />
             </View>
             <View style={style.button}>
         <Button
             onPress={onPressFullStory}
-            title="Full Story"
-            color="#BD73C9"
+            title="Read"
+            color={pastel.read}
         />
             </View>
         </View>
@@ -38,7 +39,7 @@ return(
 const style=StyleSheet.create({
     instructions: {
         flex:1,
-        backgroundColor: '#EB8888',
+        backgroundColor:pastel.backgroundColorApp,
         alignItems: 'center'
     },
     buttons:{
@@ -54,7 +55,7 @@ const style=StyleSheet.create({
         flex:2,
     },
     button:{
-        width:120
+        width:sizes.buttonsRest
     }
 })
 export default Instructions

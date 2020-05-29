@@ -2,6 +2,8 @@ import React from "react";
 import { useFonts } from '@use-expo/font'
 import { AppLoading } from 'expo'
 import {Text, View,StyleSheet} from "react-native";
+import {pastel,cool} from "./constants/colors";
+
 function Title() {
     let [fontsLoaded] = useFonts({
         'AbhayabaLibre': require('../assets/fonts/AbhayaLibre-Regular.ttf'),
@@ -23,7 +25,7 @@ function Title() {
 }
 const styles=StyleSheet.create({
     header:{
-        backgroundColor: '#EB8888',
+        backgroundColor:cool.backgroundColorApp,
         flex:1,
         alignItems:'center',
         justifyContent:'space-between'

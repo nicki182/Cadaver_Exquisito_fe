@@ -1,6 +1,8 @@
 import * as React from 'react';
-import {Button,View,Touchable,StyleSheet} from 'react-native';
-import Header from "./header";
+import {Button, View, Touchable, StyleSheet, Alert} from 'react-native';
+import sizes from "./constants/buttons";
+import {pastel} from "./constants/colors";
+import {cool} from './constants/colors'
 function Menu({navigation}){
     const onPressStart=()=>{
         navigation.navigate('StoryCreate')
@@ -13,27 +15,26 @@ function Menu({navigation}){
     }
     return(
         <View style={style.menu}>
-            <Header></Header>
             <View style={style.buttons}>
                 <View style={style.button}>
         <Button
             onPress={onPressStart}
             title="Start"
-            color="#80F8E2"
+            color={cool.buttons}
         />
                 </View>
                 <View style={style.button}>
         <Button
             onPress={onPressFullStory}
-            title="Full Story"
-            color="#BD73C9"
+            title="Read"
+            color={cool.buttons}
         />
                 </View>
                 <View style={style.button}>
         <Button
             onPress={onPressInstructions}
             title="Instructions"
-            color="#F1D024"
+            color={cool.buttons}
         />
                 </View>
             </View>
@@ -42,16 +43,18 @@ function Menu({navigation}){
 const style=StyleSheet.create({
     menu: {
         flex:1,
-        backgroundColor: '#EB8888',
+        backgroundColor: cool.backgroundColorApp,
         alignItems: 'center',
     },
     buttons:{
         flex:1,
-        justifyContent: 'space-between',
-        bottom:35
+        justifyContent: 'space-around',
+        bottom:35,
     },
     button:{
-        width:160
+        width:sizes.buttonsMenu,
+        borderColor:'white',
+        borderRadius:5
     }
 })
 export default Menu

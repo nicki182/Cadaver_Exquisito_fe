@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {Button, View, TouchableWithoutFeedback, TextInput, Text, StyleSheet, ScrollView, Alert, ImageBackground} from 'react-native';
 import {useState} from "react";
-import Header from "./header";
+import {pastel,cool} from './constants/colors'
+import sizes from "./constants/buttons";
 import {useQuery,useMutation} from "@apollo/react-hooks";
 import {STORY_ADD,STORY_UPDATE} from "./graphql/resolvers";
 function StoryCreate({navigation,route}) {
@@ -49,8 +50,6 @@ function StoryCreate({navigation,route}) {
         }
         return (
             <View style={style.create}>
-                <Header></Header>
-
                 <ImageBackground source={require('../assets/depositphotos_145755617-stock-illustration-notebook-paper-background-yellow-lined.png')} style={style.image}>
                 <ScrollView>
                 <View style={style.textStory}>
@@ -70,14 +69,14 @@ function StoryCreate({navigation,route}) {
                     <Button
                         onPress={handleNext}
                         title="Next"
-                        color='#DD27D6'
+                        color={cool.buttons}
                     />
                     </View>
                     <View style={style.button}>
                     <Button
                         onPress={handleCancel}
                         title="Cancel"
-                        color='red'
+                        color={cool.buttons}
                     />
                     </View>
                 </View>
@@ -90,7 +89,6 @@ function StoryCreate({navigation,route}) {
     const style = StyleSheet.create({
         create: {
             flex: 1,
-            backgroundColor: '#EB8888',
             alignItems: 'center'
         },
         buttons: {
@@ -120,13 +118,13 @@ function StoryCreate({navigation,route}) {
             zIndex:1
         },
         button:{
-            width:120
+            width:sizes.buttonsRest
         },
         textLoading:{
             flex: 1,
             fontSize:25,
             justifyContent:'center',
-            backgroundColor: '#EB8888',
+            backgroundColor:cool.backgroundColorApp,
             alignItems: 'center'
         },
         image: {

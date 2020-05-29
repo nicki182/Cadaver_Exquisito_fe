@@ -3,6 +3,8 @@ import {Modal,View,Button,StyleSheet,Alert,TouchableOpacity} from "react-native"
 import { Audio } from 'expo-av'
 import {AppLoading} from "expo";
 import { Feather } from '@expo/vector-icons';
+import sizes from './constants/buttons'
+import {pastel} from "./constants/colors";
 function  Settings() {
     const isFirstRun = useRef(true);
     const [show,setShow]=useState(false)
@@ -32,10 +34,14 @@ function  Settings() {
         setShow(true)
     }
     const muteMusic=()=> {
-        sound.setIsMutedAsync(true)
+        if(sound!=undefined) {
+            sound.setIsMutedAsync(true)
+        }
     }
     const startMusic=()=>{
-        sound.setIsMutedAsync(false)
+        if(sound!=undefined) {
+            sound.setIsMutedAsync(false)
+        }
     }
     const leaveConfig=()=>{
         setShow(false)
@@ -73,7 +79,7 @@ const style=StyleSheet.create({
             marginTop: 22
         },
     button:{
-    width:60,
+    width:sizes.buttonsModal,
     },
     settings:{
         flex:1,
@@ -89,15 +95,15 @@ const style=StyleSheet.create({
         width:'80%'
     },
     buttonOk:{
-    width:120
+    width:sizes.buttonsRest
     },
     modalView: {
         margin: 20,
-        backgroundColor: "white",
         borderRadius: 200,
         padding:20,
         alignItems: "center",
         elevation: 5,
+        backgroundColor:pastel.backgroundColorSettings
     }
 })
 export default Settings

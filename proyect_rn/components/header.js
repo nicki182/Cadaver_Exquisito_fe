@@ -4,6 +4,7 @@ import { useFonts } from '@use-expo/font'
 import { AppLoading } from 'expo'
 import Settings from "./settings";
 import Title from "./title";
+import {pastel,cool} from "./constants/colors";
 function Header() {
         return (
             <View style={styles.header}>
@@ -18,7 +19,7 @@ function Header() {
 }
 const styles=StyleSheet.create({
     header:{
-        backgroundColor: '#EB8888',
+        backgroundColor:cool.backgroundColorApp,
         flex:1,
         alignItems:'center',
         justifyContent:'space-around'

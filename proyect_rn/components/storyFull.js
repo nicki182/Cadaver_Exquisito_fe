@@ -3,7 +3,8 @@ import {Button, StyleSheet, View, Text, ScrollView, ImageBackground} from "react
 import * as React from "react";
 import {STORY_FULL} from "./graphql/resolvers";
 import {useQuery} from "@apollo/react-hooks";
-import Header from "./header";
+import {pastel,cool} from "./constants/colors";
+import sizes from "./constants/buttons";
 function StoryFull({navigation,route}) {
     const {Call}=route.params
     let [call,setCall]=useState(Call)
@@ -28,8 +29,7 @@ function StoryFull({navigation,route}) {
     }
     return(
         <View style={style.full}>
-            <Header></Header><
-            ImageBackground source={require('../assets/depositphotos_145755617-stock-illustration-notebook-paper-background-yellow-lined.png')} style={style.image}>
+            <ImageBackground source={require('../assets/depositphotos_145755617-stock-illustration-notebook-paper-background-yellow-lined.png')} style={style.image}>
             <View style={style.textStory}>
                 <ScrollView>
             <Text>{data.storyFull}</Text>
@@ -40,14 +40,14 @@ function StoryFull({navigation,route}) {
             <Button
                 onPress={handleNext}
                 title="Next"
-                color='#DD27D6'
+                color={cool.buttons}
             />
                 </View>
                 <View style={style.button}>
             <Button
                 onPress={handleMenu}
                 title="Menu"
-                color='#74F368'
+                color={cool.buttons}
             />
                 </View>
             </View>
@@ -58,7 +58,7 @@ function StoryFull({navigation,route}) {
 const style = StyleSheet.create({
     full: {
         flex: 1,
-        backgroundColor: '#EB8888',
+        backgroundColor:cool.backgroundColorApp,
         alignItems: 'center'
     },
     buttons: {
@@ -82,13 +82,13 @@ const style = StyleSheet.create({
         maxWidth:320,
     },
     button:{
-        width:120
+        width:sizes.buttonsRest
     },
     textLoading:{
         flex: 1,
         fontSize:25,
         justifyContent:'center',
-        backgroundColor: '#EB8888',
+        backgroundColor:cool.backgroundColorApp,
         alignItems: 'center'
     },
     image: {
