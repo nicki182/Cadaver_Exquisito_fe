@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Button, View, TouchableWithoutFeedback, TextInput, Text, StyleSheet, ScrollView, Alert, ImageBackground} from 'react-native';
 import {useState} from "react";
 import {pastel,cool} from './constants/colors'
+import Constants from 'expo-constants'
 import sizes from "./constants/buttons";
 import {useQuery,useMutation} from "@apollo/react-hooks";
 import {STORY_ADD,STORY_UPDATE} from "./graphql/resolvers";
@@ -25,7 +26,8 @@ function StoryCreate({navigation,route}) {
             navigation.navigate('Menu')
         }
         const handleNext = () => {
-            storyUpdate({variables:{type:{story:data.storyToAdd,add:add,edit:edit}}})
+            const user=Constants.sessionId()
+            storyUpdate({variables:{type:{sentence:add,user:user,storyId:data.storyToAdd.storyId}}})
             setEdit(edit++)
             switch(true){
                 case (add.length<10):
@@ -54,7 +56,7 @@ function StoryCreate({navigation,route}) {
                 <ScrollView>
                 <View style={style.textStory}>
                     <Text numberOfLines={2}>
-                        {data.storyToAdd}
+                        {data.storyToAdd.sentece}
                     </Text>
 
                     <View style={style.textInput}>
