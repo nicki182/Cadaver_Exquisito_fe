@@ -60,7 +60,7 @@ function StoryCreate({navigation,route}) {
                         <Text>
                             How long do you wish this new story to be?
                         </Text>
-                        <View>
+                        <View style={style.textInputModal}>
                             <TextInput maxLength={2} keyboardType={"number-pad"}
                                        onChangeText={handleNumber}/>
                         </View>
@@ -197,9 +197,8 @@ function StoryCreate({navigation,route}) {
             justifyContent: "center"
         },
         textInputModal:{
-            borderColor:'black',
-            borderWidth:10,
-            elevation:10
+            borderBottomColor:'black',
+            borderBottomWidth:3
         },
         newStoryModalView:{
             flex: 1,
