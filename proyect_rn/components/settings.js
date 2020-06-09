@@ -14,8 +14,7 @@ function  Settings() {
                  if(isFirstRun.current) {
                      const soundObject=new Audio.Sound()
                      try {
-                         await soundObject.loadAsync(require('../assets/sounds/BADBADNOTGOOD-TimeMovesSlow(Feat.SamuelT.Herring)(OfficialStream).mp3'));
-                         await soundObject.playAsync();
+                         await soundObject.loadAsync(require('../assets/sounds/Men_I_Trust-Oncle_Jazz(Full_Album_HQ)(128_kbps).mp3'))
                          // Your sound is playing!
                      } catch (error) {
                          Alert.alert('Ups something went wrong', 'wasn\'t able to play music', [{
@@ -103,7 +102,7 @@ const style=StyleSheet.create({
         padding:20,
         alignItems: "center",
         elevation: 5,
-        backgroundColor:pastel.backgroundColorSettings
+        backgroundColor:pastel.backgroundColorModal
     }
 })
 export default Settings

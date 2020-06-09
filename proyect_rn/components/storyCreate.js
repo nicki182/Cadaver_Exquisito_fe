@@ -1,6 +1,16 @@
 import * as React from 'react';
-import {Button, View, TouchableWithoutFeedback, TextInput, Text, StyleSheet, ScrollView, Alert, ImageBackground} from 'react-native';
-import {useState} from "react";
+import {
+    Button,
+    View,
+    TextInput,
+    Text,
+    StyleSheet,
+    ScrollView,
+    Alert,
+    ImageBackground,
+    Modal
+} from 'react-native';
+import {useEffect, useState} from "react";
 import {pastel,cool} from './constants/colors'
 import Constants from 'expo-constants'
 import sizes from "./constants/buttons";
@@ -10,7 +20,10 @@ function StoryCreate({navigation,route}) {
        const {Edit} =route.params
        let [edit,setEdit]=useState(Edit)
        const [add,setAdd]=useState('')
-       const {loading, error, data}= useQuery(STORY_ADD,{variables:{edit:edit}})
+       const [storyLength,setStoryLength]=useState(0)
+       const [show,setShow]=useState(true)
+    const userId=Constants.sessionId
+       const {loading, error, data}= useQuery(STORY_ADD,{variables:{userId:userId}})
        const [storyUpdate]=useMutation(STORY_UPDATE)
         if (loading) {
             return <View style={style.textLoading}>
@@ -25,24 +38,38 @@ function StoryCreate({navigation,route}) {
             console.error(error)
             navigation.navigate('Menu')
         }
-        const handleNext = () => {
-            const user=Constants.sessionId()
-            storyUpdate({variables:{type:{sentence:add,user:user,storyId:data.storyToAdd.storyId}}})
-            setEdit(edit++)
-            switch(true){
-                case (add.length<10):
-                Alert.alert('You didn\'t even write a sentence', 'You need to at least write 10 characters to be considered a sentence', [{
-                    text: 'okay',
-                    style: 'default'
-                }])
-                    break
-                case(edit<3):
-                navigation.push('StoryCreate', {Edit: edit})
-                    break
-                default:
-                navigation.navigate('StoryFull')
-            }
+        if(data.storyToAdd.sentence=='This is my story...'){
+            return(
+                <View style={style.create}>
+            <Modal visible={show} transparent={true}>
+                <View style={style.centeredView}>
+                    <View style={style.modalView}>
+                        <View>
+                            <TextInput maxLength={2} keyboardType={"number-pad"}
+                                       onChangeText={handleNumber}/>
+                        </View>
+                        <View style={style.buttonModal}>
+                            <Button title={'Okay'} onPress={handleModal}/>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+                    </View>
+            )
         }
+        const handleNext = () => {
+            storyUpdate({variables:{type:{sentence:add,user:user,storyId:data.storyToAdd.storyId,storyMaxLength:storyLength}}})
+            setEdit(edit++)
+                if(add.length<10) {
+                    Alert.alert('You didn\'t even write a sentence', 'You need to at least write 10 characters to be considered a sentence', [{
+                        text: 'okay',
+                        style: 'default'
+                    }])
+                }
+               else {
+                    navigation.push('StoryCreate', {Edit: edit})
+                }
+            }
 
         const handleCancel = () => {
             navigation.navigate('Menu')
@@ -50,13 +77,26 @@ function StoryCreate({navigation,route}) {
         const handleText=(text)=>{
                 setAdd(text)
         }
+        const handleNumber=(number)=>{
+            setStoryLength(number)
+        }
+        const handleModal=()=> {
+            if (3 < storyLength < 15)
+                setShow(false)
+            else {
+                Alert.alert('You need to put a number between 3 and 15', 'A story needs to have beetwen 3 to 15 sentences', [{
+                    text: 'okay',
+                    style: 'default'
+                }])
+            }
+        }
         return (
             <View style={style.create}>
                 <ImageBackground source={require('../assets/depositphotos_145755617-stock-illustration-notebook-paper-background-yellow-lined.png')} style={style.image}>
                 <ScrollView>
                 <View style={style.textStory}>
                     <Text numberOfLines={2}>
-                        {data.storyToAdd.sentece}
+                        {data.storyToAdd.sentence}
                     </Text>
 
                     <View style={style.textInput}>
@@ -92,6 +132,23 @@ function StoryCreate({navigation,route}) {
         create: {
             flex: 1,
             alignItems: 'center'
+        },
+        centeredView: {
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 22
+        },
+        buttonModal:{
+          width:sizes.buttonsRest
+        },
+        modalView: {
+            margin: 20,
+            borderRadius:100,
+            padding:20,
+            alignItems: "center",
+            elevation: 5,
+            backgroundColor:pastel.backgroundColorModal
         },
         buttons: {
             flex: 1,
@@ -133,6 +190,11 @@ function StoryCreate({navigation,route}) {
             flex: 1,
             width:380,
             justifyContent: "center"
+        },
+        textInputModal:{
+            borderColor:'black',
+            borderWidth:3,
+            elevation:5
         }
     })
 export default StoryCreate
