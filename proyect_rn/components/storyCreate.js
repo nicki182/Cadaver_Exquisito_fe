@@ -38,12 +38,28 @@ function StoryCreate({navigation,route}) {
             console.error(error)
             navigation.navigate('Menu')
         }
-        if(data.storyToAdd.sentence=='This is my story...'){
+        const handleNumber=(number)=>{
+        setStoryLength(number)
+    }
+        const handleModal=()=> {
+        if (3 < storyLength < 15)
+            setShow(false)
+        else {
+            Alert.alert('You need to put a number between 3 and 15', 'A story needs to have beetwen 3 to 15 sentences', [{
+                text: 'okay',
+                style: 'default'
+            }])
+        }
+    }
+        if(data.storyToAdd.sentence=='This is my story...' && show){
             return(
-                <View style={style.create}>
+                <View style={style.newStoryModalView}>
             <Modal visible={show} transparent={true}>
                 <View style={style.centeredView}>
                     <View style={style.modalView}>
+                        <Text>
+                            How long do you wish this new story to be?
+                        </Text>
                         <View>
                             <TextInput maxLength={2} keyboardType={"number-pad"}
                                        onChangeText={handleNumber}/>
@@ -54,7 +70,7 @@ function StoryCreate({navigation,route}) {
                     </View>
                 </View>
             </Modal>
-                    </View>
+            </View>
             )
         }
         const handleNext = () => {
@@ -77,19 +93,8 @@ function StoryCreate({navigation,route}) {
         const handleText=(text)=>{
                 setAdd(text)
         }
-        const handleNumber=(number)=>{
-            setStoryLength(number)
-        }
-        const handleModal=()=> {
-            if (3 < storyLength < 15)
-                setShow(false)
-            else {
-                Alert.alert('You need to put a number between 3 and 15', 'A story needs to have beetwen 3 to 15 sentences', [{
-                    text: 'okay',
-                    style: 'default'
-                }])
-            }
-        }
+
+
         return (
             <View style={style.create}>
                 <ImageBackground source={require('../assets/depositphotos_145755617-stock-illustration-notebook-paper-background-yellow-lined.png')} style={style.image}>
@@ -193,8 +198,14 @@ function StoryCreate({navigation,route}) {
         },
         textInputModal:{
             borderColor:'black',
-            borderWidth:3,
-            elevation:5
+            borderWidth:10,
+            elevation:10
+        },
+        newStoryModalView:{
+            flex: 1,
+            justifyContent:'center',
+            backgroundColor:cool.backgroundColorApp,
+            alignItems: 'center'
         }
     })
 export default StoryCreate
