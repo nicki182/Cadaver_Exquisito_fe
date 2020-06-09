@@ -3,14 +3,14 @@
      start:"#80F8E2",
       next:"#DD27D6",
      menu:"#74F368",
-     intructions:"#F1D024",
-     backgroundColorSettings:"white",
+     instructions:"#F1D024",
+     backgroundColorModal:"white",
      cancel:"red",
       read:"#BD73C9",
 }
 const cool={
    backgroundColorApp: "#8D1A89",
-    backgroundColorSettings: "white",
+    backgroundColorModal: "white",
     buttons:"black",
     text:"white"
 }
